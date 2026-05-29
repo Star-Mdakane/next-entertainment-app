@@ -9,3 +9,6 @@
 }
 
 
+.card {
+  @apply bg-blue-sec rounded-[10px] flex flex-col gap-6 md:gap-8 w-81.75 md:w-100 
+}
