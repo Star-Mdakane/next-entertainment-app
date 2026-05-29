@@ -18,8 +18,7 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${outfit.variable} h-full bg-blue-pri antialiased`}
     >
-      <body className="min-h-full max-w-360 mx-auto flex flex-col">
-        <Header />
+      <body className="min-h-full max-w-360 min-w-93.75 mx-auto flex flex-col">
         {children}
       </body>
     </html>

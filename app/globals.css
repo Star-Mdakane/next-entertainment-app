@@ -10,5 +10,5 @@
 
 
 .card {
-  @apply bg-blue-sec rounded-[10px] flex flex-col gap-6 md:gap-8 w-81.75 md:w-100 
+  @apply bg-blue-sec rounded-[10px] flex flex-col gap-6 md:gap-8 p-6 md:p-8 w-81.75 md:w-100 
 }
