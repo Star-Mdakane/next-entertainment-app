@@ -54,6 +54,10 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 
 Upon reading the readme file, the app should be build as a full stack app. So far in my jounrney I am only capable of react router, which means I have to use express for the backend. The other option I had was to learn next js and try to use it. Though using express would give me the challenge needed to learn more and to practice express, I think adding next to my stack is also reasonable. As forementiond, i have decided to take the bonus challenge and add login/register pages.
 
+- When fetching the data I had to move it from root component to public, I do not know whether that was the problem or if it was me not including the domain.
+- It is also helpful to remember that the component also has to be async as well.
+- Fetching server data, I had forgoten that you have to include the domain aswell.
+
 ### Built with
 
 - Semantic HTML5 markup
