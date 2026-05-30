@@ -15,13 +15,13 @@ const Header = () => {
 
     const getLinkClass = (href) => {
         const isActive = pathname === href
-        return `text-${isActive ? 'white' : 'blue-ter'}`
+        return `text-${isActive ? 'white' : ''}`
     }
 
     return (
         <header
-            className="w-screen md:w-full h-14 md:h-18 md:rounded-[10px] lg:hidden flex justify-center items-center bg-blue-sec">
-            <div className="w-[91%] md:w-[94%] flex justify-between items-center">
+            className="w-screen -translate-x-8 md:translate-x-0 md:static md:max-w-full h-14 md:h-18 md:rounded-[10px] px-8 lg:hidden flex justify-center items-center bg-blue-sec">
+            <div className="w-full flex justify-between items-center">
                 <div>
                     <Link href="/">
                         <MdMovie className="text-[25px] md:text-[32px] text-red-pri" />
@@ -29,16 +29,16 @@ const Header = () => {
                 </div>
                 <nav className="flex items-center gap-6 md:gap-8">
                     <Link href="/watchlist/home">
-                        <TbLayoutGridFilled className={`text-[16px] md:text-[20px]  hover:text-red-pri ${getLinkClass('/watchlist/home')}`} />
+                        <TbLayoutGridFilled className={`text-[16px] md:text-[20px] text-blue-ter hover:text-red-pri ${getLinkClass('/watchlist/home')}`} />
                     </Link>
                     <Link href="/watchlist/movies">
-                        <RiFilmFill className={`text-[16px] md:text-[20px]  hover:text-red-pri ${getLinkClass('/watchlist/movies')}`} />
+                        <RiFilmFill className={`text-[16px] md:text-[20px] text-blue-ter hover:text-red-pri ${getLinkClass('/watchlist/movies')}`} />
                     </Link>
                     <Link href="/watchlist/series">
-                        <TbDeviceTvOldFilled className={`text-[16px] md:text-[20px]  hover:text-red-pri ${getLinkClass('/watchlist/series')}`} />
+                        <TbDeviceTvOldFilled className={`text-[16px] md:text-[20px] text-blue-ter hover:text-red-pri ${getLinkClass('/watchlist/series')}`} />
                     </Link>
                     <Link href="/watchlist/bookmarked">
-                        <FaBookBookmark className={`text-[16px] md:text-[20px]  hover:text-red-pri ${getLinkClass('/watchlist/bookmarked')}`} />
+                        <FaBookBookmark className={`text-[16px] md:text-[20px] text-blue-ter hover:text-red-pri ${getLinkClass('/watchlist/bookmarked')}`} />
                     </Link>
                 </nav>
                 <div

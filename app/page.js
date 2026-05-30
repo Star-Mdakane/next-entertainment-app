@@ -1,3 +1,4 @@
+import SearchBar from "@/components/SearchBar";
 import Link from "next/link";
 import { MdMovie } from "react-icons/md";
 

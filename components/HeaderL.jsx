@@ -16,12 +16,12 @@ const HeaderL = () => {
 
     const getLinkClass = (href) => {
         const isActive = pathname === href
-        return `text-${isActive ? 'white' : 'blue-ter'}`
+        return `text-${isActive ? 'white' : ''}`
     }
 
     return (
         <header
-            className='w-24 h-240 hidden lg:flex rounded-[20px] justify-center items-center bg-blue-sec'>
+            className='w-24 h-240 hidden lg:flex rounded-[20px] justify-center items-center mx-8 mt-8 bg-blue-sec'>
             <div className='w-10 h-[92%] flex flex-col justify-between items-center'>
                 <div className='flex flex-col gap-18 items-center'>
                     <div>
@@ -29,18 +29,19 @@ const HeaderL = () => {
                             <MdMovie className="text-[32px] text-red-pri" />
                         </Link>
                     </div>
-                    <nav className='flex flex-col gap-10'>
-                        <Link href="wathlist/home">
-                            <TbLayoutGridFilled className={`text-[20px]  hover:text-red-pri ${getLinkClass('/watchlist/home')}`} />
+
+                    <nav className="flex flex-col items-center gap-10">
+                        <Link href="/watchlist/home">
+                            <TbLayoutGridFilled className={`text-[20px] text-blue-ter hover:text-red-pri ${getLinkClass('/watchlist/home')}`} />
                         </Link>
-                        <Link href="wathlist/movies">
-                            <RiFilmFill className={`text-[20px]  hover:text-red-pri ${getLinkClass('/watchlist/movies')}`} />
+                        <Link href="/watchlist/movies">
+                            <RiFilmFill className={`text-[20px] text-blue-ter hover:text-red-pri ${getLinkClass('/watchlist/movies')}`} />
                         </Link>
-                        <Link href="wathlist/series">
-                            <TbDeviceTvOldFilled className={`text-[20px]  hover:text-red-pri ${getLinkClass('/watchlist/series')}`} />
+                        <Link href="/watchlist/series">
+                            <TbDeviceTvOldFilled className={`text-[20px] text-blue-ter hover:text-red-pri ${getLinkClass('/watchlist/series')}`} />
                         </Link>
-                        <Link href="wathlist/bookmarked">
-                            <FaBookBookmark className={`text-[20px]  hover:text-red-pri ${getLinkClass('/watchlist/bookmarked')}`} />
+                        <Link href="/watchlist/bookmarked">
+                            <FaBookBookmark className={`text-[20px] text-blue-ter hover:text-red-pri ${getLinkClass('/watchlist/bookmarked')}`} />
                         </Link>
                     </nav>
                 </div>
@@ -58,4 +59,4 @@ const HeaderL = () => {
     )
 }
 
-export default HeaderL
+export default HeaderL;
