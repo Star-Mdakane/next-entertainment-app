@@ -21,7 +21,7 @@ const HeaderL = () => {
 
     return (
         <header
-            className='w-24 h-240 hidden lg:flex rounded-[20px] justify-center items-center mx-8 mt-8 bg-blue-sec'>
+            className='w-24 h-240 hidden lg:flex rounded-[20px] justify-center shrink-0 items-center mx-8 mt-8 bg-blue-sec'>
             <div className='w-10 h-[92%] flex flex-col justify-between items-center'>
                 <div className='flex flex-col gap-18 items-center'>
                     <div>

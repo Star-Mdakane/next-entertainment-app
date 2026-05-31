@@ -12,7 +12,7 @@ const SeriesPage = async () => {
     console.log(series);
 
     return (
-        <div>SeriesPage</div>
+        <div className="w-full flex flex-col gap-6 md:gap-8 lg:gap-10 mt-6 md:mt-8 lg:mt-16 overflow-hidden">SeriesPage</div>
     )
 }
 

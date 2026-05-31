@@ -54,6 +54,17 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 
 Upon reading the readme file, the app should be build as a full stack app. So far in my jounrney I am only capable of react router, which means I have to use express for the backend. The other option I had was to learn next js and try to use it. Though using express would give me the challenge needed to learn more and to practice express, I think adding next to my stack is also reasonable. As forementiond, i have decided to take the bonus challenge and add login/register pages.
 
+1. I started the project by first designing the folder structure: pages, components, context...
+- When I was about to test there was something wrong with turbopack, the problem was that there was another json.lock file somewhere deep n my drive so I had to locate and delete it.
+
+2. I decided to start with components and I worked on the header then went to work on a couple of layouts.
+
+3. After an exhaustig while fighting wiith the header, I decided to work on data fetching to see if it would work.
+
+4. Worked on the design of the landing page, will complete fetching data for overlay later as it is not priority.
+
+5. Completed the ui of the components of the pages; grids, sizes and positioning on pages 
+
 - When fetching the data I had to move it from root component to public, I do not know whether that was the problem or if it was me not including the domain.
 - It is also helpful to remember that the component also has to be async as well.
 - Fetching server data, I had forgoten that you have to include the domain aswell.
