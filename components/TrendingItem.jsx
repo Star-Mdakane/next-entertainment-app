@@ -13,7 +13,7 @@ const TrendingItem = () => {
                 <FaRegBookmark className="text-white" />
                 {/* <FaBookmark className="text-white" /> */}
             </div>
-            <div className="h-17.5 md:h-25 p-4 md:px-6 flex flex-col justify-between">
+            <div className="h-auto flex flex-col justify-between gap-2">
                 <div className="flex items-center gap-2">
                     <p className="text-white/75 text-[12px] md:text-[15px] leading-[125%] tracking-[-0.3] font-light">2019</p>
                     <div className="w-0.75 h-0.75 bg-white/50"></div>

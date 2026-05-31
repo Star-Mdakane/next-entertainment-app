@@ -6,7 +6,7 @@ import { TbDeviceTvOldFilled } from "react-icons/tb"
 
 const MediaItem = () => {
     return (
-        <div className="flex flex-col justify-between">
+        <div className="flex flex-col justify-between gap-2">
             <div className={`h-27.5 md:h-35 lg:h-44 flex justify-between rounded-lg bg-green-500 w-full px-2 py-4`}>
                 <div className="w-8 h-8 bg-black/50 grid place-content-center ml-auto rounded-full">
                     {/* <FaRegBookmark className="text-white" /> */}

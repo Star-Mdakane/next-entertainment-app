@@ -65,6 +65,8 @@ Upon reading the readme file, the app should be build as a full stack app. So fa
 
 5. Completed the ui of the components of the pages; grids, sizes and positioning on pages 
 
+6. Creaated individual items for the trending grid and media grid, only thing that is left is just populating the items with data.
+
 - When fetching the data I had to move it from root component to public, I do not know whether that was the problem or if it was me not including the domain.
 - It is also helpful to remember that the component also has to be async as well.
 - Fetching server data, I had forgoten that you have to include the domain aswell.
