@@ -4,7 +4,7 @@ import { MdMovie } from "react-icons/md"
 import Link from 'next/link';
 import { TbDeviceTvOldFilled, TbLayoutGridFilled } from "react-icons/tb";
 import { RiFilmFill } from "react-icons/ri";
-import { FaBookBookmark } from "react-icons/fa6";
+import { FaBookmark } from "react-icons/fa6";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
@@ -38,7 +38,7 @@ const Header = () => {
                         <TbDeviceTvOldFilled className={`text-[16px] md:text-[20px] text-blue-ter hover:text-red-pri ${getLinkClass('/watchlist/series')}`} />
                     </Link>
                     <Link href="/watchlist/bookmarked">
-                        <FaBookBookmark className={`text-[16px] md:text-[20px] text-blue-ter hover:text-red-pri ${getLinkClass('/watchlist/bookmarked')}`} />
+                        <FaBookmark className={`text-[16px] md:text-[20px] text-blue-ter hover:text-red-pri ${getLinkClass('/watchlist/bookmarked')}`} />
                     </Link>
                 </nav>
                 <div
