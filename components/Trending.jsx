@@ -5,9 +5,9 @@ import TrendingItem from './TrendingItem'
 
 const Trending = () => {
 
-    const { media } = useMovie();
+    const { filteredMovies } = useMovie();
 
-    const trending = media.filter(mv => mv.isTrending === true)
+    const trending = filteredMovies.filter(mv => mv.isTrending === true)
 
 
     return (

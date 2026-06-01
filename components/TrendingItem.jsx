@@ -22,7 +22,7 @@ const TrendingItem = ({ media }) => {
             }}
         >
             <button className="w-8 h-8 bg-black/50 grid place-content-center ml-auto rounded-full">
-                {bookmarked ? <FaRegBookmark className="text-white" /> : <FaBookmark className="text-white" />}
+                {bookmarked ? <FaBookmark className="text-white" /> : <FaRegBookmark className="text-white" />}
             </button>
             <div className="h-auto flex flex-col justify-between gap-2">
                 <div className="flex items-center gap-2">

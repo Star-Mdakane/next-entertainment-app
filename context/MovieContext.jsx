@@ -1,6 +1,8 @@
 'use client'
 
 import { createContext, useContext, useEffect, useState } from "react";
+import media from '../public/data.json'
+import { nanoid } from "nanoid";
 
 export const MovieContext = createContext()
 
@@ -12,27 +14,42 @@ export const useMovie = () => {
 
 export const MovieProvider = ({ children }) => {
 
-    const [media, setMedia] = useState([])
-    const [loading, setLoading] = useState(true)
+    const [searchTerm, setSearchTerm] = useState('');
+    const [marked, setMarked] = useState(() =>
+        media.map(item => ({ ...item, id: nanoid(), isBookmarked: false }))
+    )
+
+    const [filteredMovies, setFilteredMovies] = useState(marked)
+
+    const toggleBookmark = (id) => {
+        setMarked(prev => prev.map(item =>
+            item.id === id ? { ...item, isBookmarked: !item.isBookmarked }
+                : item
+        ))
+    }
+
 
     useEffect(() => {
-
-        const loadData = async () => {
-            try {
-                const res = await fetch(`/data.json`)
-                if (!res.ok) throw new Error('Failed to fetch')
-                const data = await res.json()
-                setMedia(data)
-            } catch (err) {
-                console.error(err)
-            } finally {
-                setLoading(false)
-            }
+        if (!searchTerm) {
+            setFilteredMovies(marked)
+            return
         }
-        loadData()
-    }, [])
 
-    const value = { media, loading }
+        const results = marked.filter(movie =>
+            movie.title.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+        setFilteredMovies(results)
+    }, [marked, searchTerm])
+
+
+
+    const value = {
+        filteredMovies,
+        searchTerm,
+        setSearchTerm,
+        marked,
+        toggleBookmark
+    }
 
     console.log(media);
 

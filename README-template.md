@@ -67,9 +67,18 @@ Upon reading the readme file, the app should be build as a full stack app. So fa
 
 6. Creaated individual items for the trending grid and media grid, only thing that is left is just populating the items with data.
 
+7. Populated data into the items via server. Had to remove it and create a context since I think I have to to edit the bookmark tab.
+
+8. I then had to populate images from the data, tried different methods but had to settle for inline styling 
+
+9. Completed the function of search bar, created on context so i can apply it on any commponent and avoid using many client components.
+
+10. Bookmark button and function up to speed.
+
 - When fetching the data I had to move it from root component to public, I do not know whether that was the problem or if it was me not including the domain.
 - It is also helpful to remember that the component also has to be async as well.
 - Fetching server data, I had forgoten that you have to include the domain aswell.
+- I had to change the path from the json file.
 
 ### Built with
 

@@ -1,11 +1,15 @@
+import { useMovie } from "@/context/MovieContext"
 import { FaBookmark, FaRegBookmark } from "react-icons/fa6"
 import { RiFilmFill } from "react-icons/ri"
 import { TbDeviceTvOldFilled } from "react-icons/tb"
 
 const MediaItem = ({ media }) => {
+    const { toggleBookmark } = useMovie()
+
     const movie = media.category.toLowerCase() === 'movie'
     const bookmarked = media.isBookmarked === true;
     const imagePath = media.thumbnail.regular.large;
+
 
 
     return (
@@ -16,8 +20,10 @@ const MediaItem = ({ media }) => {
                     backgroundSize: 'cover',
                     backgroundPosition: 'center'
                 }}>
-                <button className="w-8 h-8 bg-black/50 grid place-content-center ml-auto rounded-full">
-                    {bookmarked ? <FaRegBookmark className="text-white" /> : <FaBookmark className="text-white" />}
+                <button
+                    onClick={() => toggleBookmark(media.id)}
+                    className="w-8 h-8 bg-black/50 grid place-content-center ml-auto rounded-full">
+                    {bookmarked ? <FaBookmark className="text-white" /> : <FaRegBookmark className="text-white" />}
                 </button>
             </div>
             <div className="h-10 md:h-12 flex flex-col gap-2 justify-between">
