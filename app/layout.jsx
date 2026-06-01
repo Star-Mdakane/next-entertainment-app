@@ -1,6 +1,7 @@
 import { Outfit } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
+import { MovieProvider } from "@/context/MovieContext";
 
 const outfit = Outfit({
   variable: "--font-geist-sans",
@@ -19,7 +20,9 @@ export default function RootLayout({ children }) {
       className={`${outfit.variable} h-full bg-blue-pri antialiased`}
     >
       <body className="min-h-full max-w-360 min-w-93.75 mx-auto flex flex-col">
-        {children}
+        <MovieProvider>
+          {children}
+        </MovieProvider>
       </body>
     </html>
   )
