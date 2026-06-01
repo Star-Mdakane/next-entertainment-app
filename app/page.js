@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { MdMovie } from "react-icons/md";
+import media from '@/public/data.json'
 
 export default function Home() {
 
   return (
 
-    <main className="w-screen h-screen flex flex-col max-w-360 mx-auto justify-center md:mt-8 px-8">
+    <main className="w-screen h-screen flex flex-col max-w-360 mx-auto justify-center mt-8 px-8">
       {/* Absolute overlay background */}
 
       <div className="w-full flex justify-between items-center">
@@ -19,8 +20,8 @@ export default function Home() {
         </Link>
       </div>
       <div className="w-full flex flex-col flex-1 justify-center items-center text-center">
-        <h2 className="w-1/3 text-3xl leading-[125%] tracking-[-0.3] text-white font-medium">Watch the latest movies, TV series and more.</h2>
-        <p className="w-1/2 text-[15px] leading-[125%] tracking-[-0.3] text-blue-ter font-light mt-15">Login in to get lost in the a universe of entertainment</p>
+        <h2 className="w-1/2 md:w-1/3 text-xl md:text-3xl leading-[125%] tracking-[-0.3] text-white font-medium">Watch the latest movies, TV series and more.</h2>
+        <p className="w-1/2 text-[12px] md:text-[15px] leading-[125%] tracking-[-0.3] text-blue-ter font-light mt-8 md:mt-15">Login in to get lost in the a universe of entertainment</p>
       </div>
     </main>
   );
