@@ -46,9 +46,9 @@ const HeaderL = () => {
                     </nav>
                 </div>
                 <div
-                    className="relative h-10 w-10 rounded-full border-2 border-white">
+                    className="relative h-10 w-10 rounded-full border border-white overflow-hidden">
                     <Image
-                        src="/image-avatar.png"
+                        src="/anon.jpg"
                         alt="avatar"
                         fill
                         className="object-cover"

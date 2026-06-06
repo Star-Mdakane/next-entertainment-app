@@ -1,8 +1,12 @@
+'use client'
+
 import Link from "next/link";
 import { MdMovie } from "react-icons/md";
-import media from '@/public/data.json'
+import { useMovie } from "@/context/MovieContext"
 
 export default function Home() {
+
+  const { user } = useMovie()
 
   return (
 
@@ -14,10 +18,17 @@ export default function Home() {
           <MdMovie className="text-[25px] md:text-[32px] text-red-pri" />
         </Link>
 
-        <Link href="/login"
-          className="px-4 py-2 text-[15px] leading-[125%] tracking-[-0.3] text-white font-medium bg-red-pri rounded-[5px]">
-          Login
-        </Link>
+        {user ? (
+          <Link href="/watchlist"
+            className="px-4 py-2 text-[15px] leading-[125%] tracking-[-0.3] text-white font-medium bg-red-pri rounded-[5px]">
+            Go to Watchlist
+          </Link>
+        ) : (
+          <Link href="/login"
+            className="px-4 py-2 text-[15px] leading-[125%] tracking-[-0.3] text-white font-medium bg-red-pri rounded-[5px]">
+            Login
+          </Link>
+        )}
       </div>
       <div className="w-full flex flex-col flex-1 justify-center items-center text-center">
         <h2 className="w-1/2 md:w-1/3 text-xl md:text-3xl leading-[125%] tracking-[-0.3] text-white font-medium">Watch the latest movies, TV series and more.</h2>

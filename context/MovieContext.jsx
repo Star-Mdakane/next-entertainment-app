@@ -14,44 +14,62 @@ export const useMovie = () => {
 
 export const MovieProvider = ({ children }) => {
 
+    const [user, setUser] = useState(null)
     const [searchTerm, setSearchTerm] = useState('');
-    const [marked, setMarked] = useState(() =>
-        media.map(item => ({ ...item, id: nanoid(), isBookmarked: false }))
-    )
+    const [marked, setMarked] = useState([])
 
-    const [filteredMovies, setFilteredMovies] = useState(marked)
+    useEffect(() => {
+        fetch('/api/me')
+            .then(r => r.json())
+            .then(data => setUser(data.user || null))
+            .catch(() => setUser(null))
+    }, [])
 
-    const toggleBookmark = (id) => {
+    useEffect(() => {
+        if (!user) {
+            setMarked([])
+            return
+        }
+
+        const merged = media.map(m => ({
+            ...m,
+            isBookmarked: user?.bookmarkedIds?.includes(m.id) || false
+        }))
+        setMarked(merged)
+
+    }, [user])
+
+    const toggleBookmark = async (id) => {
         setMarked(prev => prev.map(item =>
             item.id === id ? { ...item, isBookmarked: !item.isBookmarked }
                 : item
         ))
+
+        const res = await fetch('/api/bookmark', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' }, // <-- added
+            body: JSON.stringify({ id })
+        })
+
+        const data = await res.json()
+
+        if (data.user) setUser(data.user)
     }
 
-
-    useEffect(() => {
-        if (!searchTerm) {
-            setFilteredMovies(marked)
-            return
-        }
-
-        const results = marked.filter(movie =>
-            movie.title.toLowerCase().includes(searchTerm.toLowerCase())
-        )
-        setFilteredMovies(results)
-    }, [marked, searchTerm])
-
-
+    const filteredMovies = !searchTerm
+        ? marked
+        : marked.filter(m => m.title.toLowerCase().includes(searchTerm.toLowerCase()))
 
     const value = {
+        user,
+        setUser,
         filteredMovies,
         searchTerm,
         setSearchTerm,
         marked,
-        toggleBookmark
+        toggleBookmark,
+        user
     }
-
-    console.log(media);
 
     return (
         <MovieContext.Provider value={value}>
