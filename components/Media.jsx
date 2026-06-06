@@ -5,17 +5,21 @@ import MediaItem from "./MediaItem"
 
 const Media = () => {
 
-    const { searchTerm, filteredMovies } = useMovie();
+    const { searchTerm, filteredMovies = [] } = useMovie();
+    if (!filteredMovies.length) return null
+
+    const validMovies = filteredMovies.filter(m => m && m.title && m.year)
+
+    console.log(`validMovies: ${validMovies}`);
 
     return (
         <div className="w-full flex flex-col gap-6">
             <h2 className="text-[20px] md:text-[32px] text-white leading-[125%] tracking-[-0.3px] font-light">
-                {searchTerm ? `Found ${filteredMovies.length} results for '${searchTerm}'` : 'Recommended for you'}
-
+                {searchTerm ? `Found ${validMovies.length} results for '${searchTerm}'` : 'Recommended for you'}
             </h2>
             <div className="w-full grid grid-cols-[repeat(2,minmax(164px,220px))] md:grid-cols-[repeat(3,minmax(220px,250px))] lg:grid-cols-[repeat(4,minmax(auto,280px))] gap-4 md:gap-6 justify-center">
-                {filteredMovies.map(m => (
-                    <div key={m.title}>
+                {validMovies.map(m => (
+                    <div key={`${m.title}-${m.year}`}>
                         <MediaItem media={m} />
                     </div>
                 ))}

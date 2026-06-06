@@ -4,13 +4,12 @@ import { RiFilmFill } from "react-icons/ri"
 import { TbDeviceTvOldFilled } from "react-icons/tb"
 
 const MediaItem = ({ media }) => {
-    const { toggleBookmark } = useMovie()
+    const { toggleBookmark, marked } = useMovie()
 
-    const movie = media.category.toLowerCase() === 'movie'
-    const bookmarked = media.isBookmarked === true;
-    const imagePath = media.thumbnail.regular.large;
-
-
+    const movie = media.category?.toLowerCase() === 'movie'
+    const key = `${media.title}-${media.year}`
+    const bookmarked = marked.includes(key)
+    const imagePath = media.thumbnail?.regular.large;
 
     return (
         <div className="flex flex-col justify-between gap-2">
@@ -21,9 +20,9 @@ const MediaItem = ({ media }) => {
                     backgroundPosition: 'center'
                 }}>
                 <button
-                    onClick={() => toggleBookmark(media.id)}
+                    onClick={() => toggleBookmark(key)}
                     className="w-8 h-8 bg-black/50 grid place-content-center ml-auto rounded-full">
-                    {bookmarked ? <FaBookmark className="text-white" /> : <FaRegBookmark className="text-white" />}
+                    {bookmarked ? <FaBookmark className="text-white" /> : <FaRegBookmark className="text-white/70 hover:text-white" />}
                 </button>
             </div>
             <div className="h-10 md:h-12 flex flex-col gap-2 justify-between">

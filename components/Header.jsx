@@ -47,6 +47,7 @@ const Header = () => {
                         src="/anon.jpg"
                         alt="avatar"
                         fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
                         className="object-cover"
                     />
                 </div>

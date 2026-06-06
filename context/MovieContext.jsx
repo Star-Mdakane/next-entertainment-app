@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 import media from '../public/data.json'
-import { nanoid } from "nanoid";
+
 
 export const MovieContext = createContext()
 
@@ -26,49 +26,49 @@ export const MovieProvider = ({ children }) => {
     }, [])
 
     useEffect(() => {
-        if (!user) {
-            setMarked([])
-            return
-        }
-
-        const merged = media.map(m => ({
-            ...m,
-            isBookmarked: user?.bookmarkedIds?.includes(m.id) || false
-        }))
-        setMarked(merged)
-
+        setMarked(user?.bookmarkedIds || [])
     }, [user])
 
-    const toggleBookmark = async (id) => {
-        setMarked(prev => prev.map(item =>
-            item.id === id ? { ...item, isBookmarked: !item.isBookmarked }
-                : item
-        ))
+    const toggleBookmark = async (key) => {
+        setMarked(prev =>
+            prev.includes(key) ? prev.filter(b => b !== key) : [...prev, key]
+        )
 
-        const res = await fetch('/api/bookmark', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' }, // <-- added
-            body: JSON.stringify({ id })
-        })
+        try {
+            const res = await fetch('/api/bookmark', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ key })
+            })
 
-        const data = await res.json()
 
-        if (data.user) setUser(data.user)
+            const data = await res.json()
+            if (data.user) setUser(data.user)
+
+        } catch (err) {
+            console.log(err);
+            setMarked(prev =>
+                prev.includes(key) ? prev.filter(b => b !== key) : [...prev, key]
+            )
+        }
+
+
+
     }
 
     const filteredMovies = !searchTerm
-        ? marked
-        : marked.filter(m => m.title.toLowerCase().includes(searchTerm.toLowerCase()))
+        ? media.filter(m => m && m.title)
+        : media.filter(m =>
+            m && m.title && m.title.toLowerCase().includes(searchTerm.toLowerCase()))
 
     const value = {
         user,
-        setUser,
         filteredMovies,
+        media,
         searchTerm,
         setSearchTerm,
         marked,
-        toggleBookmark,
-        user
+        toggleBookmark
     }
 
     return (

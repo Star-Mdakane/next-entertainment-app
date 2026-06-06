@@ -8,8 +8,9 @@ import { TbDeviceTvOldFilled } from "react-icons/tb"
 
 const TrendingItem = ({ media }) => {
     const movie = media.category.toLowerCase() === 'movie'
-    const bookmarked = media.isBookmarked === true;
-    const imagePath = media.thumbnail.trending.large;
+    const { toggleBookmark, marked } = useMovie()
+    const isBookmarked = marked.includes(media.id)
+    const imagePath = media.thumbnail?.trending?.large ?? ''
 
 
     return (
@@ -21,8 +22,10 @@ const TrendingItem = ({ media }) => {
                 backgroundPosition: 'center'
             }}
         >
-            <button className="w-8 h-8 bg-black/50 grid place-content-center ml-auto rounded-full">
-                {bookmarked ? <FaBookmark className="text-white" /> : <FaRegBookmark className="text-white" />}
+            <button
+                onClick={() => toggleBookmark(media.id)}
+                className="w-8 h-8 bg-black/50 grid place-content-center ml-auto rounded-full">
+                {isBookmarked ? <FaBookmark className="text-white" /> : <FaRegBookmark className="text-white/70 hover:text-white" />}
             </button>
             <div className="h-auto flex flex-col justify-between gap-2">
                 <div className="flex items-center gap-2">
