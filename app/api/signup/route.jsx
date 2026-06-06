@@ -1,5 +1,5 @@
+import { connectDB } from "@/lib/db"
 import { hashPassword, signToken } from "@/lib/auth";
-import { getUsers, saveUsers } from "@/lib/db";
 import { nanoid } from "nanoid";
 import { NextResponse } from "next/server";
 import * as z from 'zod';
@@ -17,12 +17,12 @@ export async function POST(req) {
         const normalizedEmail = email.toLowerCase().trim()
         console.log('2. Parsed body', email)
 
-        const users = await getUsers()
-        console.log('3. Got users', users.length)
+        const db = await connectDB()
+        const users = db.collection('users')
 
-        console.log('Login email:', normalizedEmail)
-        console.log('Saved emails:', users.map(u => u.email))
-        if (users.find(u => u.email === normalizedEmail)) {
+        const existingUser = await users.findOne({ email: normalizedEmail })
+        console.log('3. Checked existing user')
+        if (existingUser) {
             return NextResponse.json({ error: 'Email already exists' }, { status: 409 })
         }
 
@@ -31,16 +31,16 @@ export async function POST(req) {
 
         const newUser = {
             id: nanoid(),
-            email,
+            email: normalizedEmail,
             password: hashed,
             bookmarkedIds: []
         }
-        await saveUsers(newUser)
-        console.log('5. Saved users')
+        await users.insertOne(newUser)
+        console.log('5. User inserted to Mongo')
 
         const { password: _, ...safeUser } = newUser
 
-        const token = await signToken({ id: newUser.id, email })
+        const token = await signToken({ id: newUser.id, email: normalizedEmail })
 
         const res = NextResponse.json({ user: safeUser })
         res.cookies.set('token', token, {

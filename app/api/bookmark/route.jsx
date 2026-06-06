@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
 import { verifyToken } from '@/lib/auth'
-import { getUsers, saveUsers } from '@/lib/db'
+import { connectDB } from '@/lib/db'
+
 
 export async function POST(req) {
 
@@ -21,32 +22,33 @@ export async function POST(req) {
             return NextResponse.json({ error: 'Invalid token' }, { status: 401 })
         }
 
-        const users = await getUsers()
-        const userIndex = users.findIndex(u => u.id === payload.id)
+        const db = await connectDB()
+        const users = db.collection('users')
 
-        if (userIndex === -1) {
+        const user = await users.findOne({ id: payload.id })
+        if (!user) {
             return NextResponse.json({ error: 'User not found' }, { status: 404 })
         }
 
-        const user = users[userIndex]
         const bookmarkedIds = user.bookmarkedIds || []
 
         const isBookmarked = bookmarkedIds.includes(key)
-        const updateIds = isBookmarked
-            ? bookmarkedIds.filter(b => b !== key)
-            : [...bookmarkedIds, key]
 
-        user.bookmarkedIds = updateIds
-        users[userIndex] = user
+        const updateOp = isBookmarked
+            ? { $pull: { bookmarkedIds: key } }
+            : { $push: { bookmarkedIds: key } }
 
-        await saveUsers(users)
+        await users.updateOne({ id: payload.id }, updateOp)
+
+        const updateUser = await users.findOne({ id: payload.id })
 
         return NextResponse.json({
-            success: true, user: { bookmarkedIds: updateIds }
+            success: true,
+            user: { bookmarkedIds: updateUser.bookmarkedIds || [] }
         })
     } catch (e) {
-        console.log('Bookmark API error:', e, 'Stack:', e.stack)
-        return NextResponse.json({ error: e.message }, { status: 400 })
+        console.log('Bookmark API error:', e)
+        return NextResponse.json({ error: e.message }, { status: 500 })
     }
 
 }

@@ -1,6 +1,6 @@
 import { signToken, verifyPassword } from "@/lib/auth";
-import { getUsers } from "@/lib/db";
 import { NextResponse } from "next/server";
+import { connectDB } from "@/lib/db"
 import * as z from 'zod';
 
 const loginSchema = z.object({
@@ -14,10 +14,12 @@ export async function POST(req) {
         const { email, password } = loginSchema.parse(body)
         const normalizedEmail = email.toLowerCase().trim()
 
-        const users = await getUsers()
-        console.log('Login email:', normalizedEmail)
-        console.log('Saved emails:', users.map(u => u.email))
-        const user = users.find(u => u.email === normalizedEmail)
+        const db = await connectDB()
+        const users = db.collection('users')
+
+        const user = await users.findOne({ email: normalizedEmail })
+
+        console.log('Login email:', normalizedEmail);
 
         if (!user || !(await verifyPassword(password, user.password))) {
             return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 })

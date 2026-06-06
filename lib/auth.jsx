@@ -17,7 +17,7 @@ export async function verifyToken(token) {
         console.log('Verifying with secret:', process.env.JWT_SECRET?.slice(0, 5))
         return jwt.verify(token, process.env.JWT_SECRET)
     } catch (err) {
-        console.log('Verify failed:', err.message) // will tell us "invalid signature" or "jwt expired"
+        console.log('Verify failed:', err.message)
         return null
     }
 }
