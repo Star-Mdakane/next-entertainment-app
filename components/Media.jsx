@@ -10,8 +10,6 @@ const Media = () => {
 
     const validMovies = filteredMovies.filter(m => m && m.title && m.year)
 
-    console.log(`validMovies: ${validMovies}`);
-
     return (
         <div className="w-full flex flex-col gap-6">
             <h2 className="text-[20px] md:text-[32px] text-white leading-[125%] tracking-[-0.3px] font-light">

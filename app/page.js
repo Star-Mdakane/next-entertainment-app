@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { MdMovie } from "react-icons/md";
 import { useMovie } from "@/context/MovieContext"
+import LogoutButton from "@/components/LogoutButton";
 
 export default function Home() {
 
@@ -19,10 +20,14 @@ export default function Home() {
         </Link>
 
         {user ? (
-          <Link href="/watchlist"
-            className="px-4 py-2 text-[15px] leading-[125%] tracking-[-0.3] text-white font-medium bg-red-pri rounded-[5px]">
-            Go to Watchlist
-          </Link>
+          <div className="flex gap-3">
+            <Link href="/watchlist"
+              className="px-4 py-2 text-[15px] leading-[125%] tracking-[-0.3] text-white font-medium bg-red-pri rounded-[5px]">
+              Go to Watchlist
+            </Link>
+            <LogoutButton />
+          </div>
+
         ) : (
           <Link href="/login"
             className="px-4 py-2 text-[15px] leading-[125%] tracking-[-0.3] text-white font-medium bg-red-pri rounded-[5px]">

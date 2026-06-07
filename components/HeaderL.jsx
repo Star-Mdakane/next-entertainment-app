@@ -9,6 +9,7 @@ import { FaBookmark } from 'react-icons/fa6'
 import { MdMovie } from 'react-icons/md'
 import { RiFilmFill } from 'react-icons/ri'
 import { TbDeviceTvOldFilled, TbLayoutGridFilled } from 'react-icons/tb'
+import LogoutButton from './LogoutButton'
 
 const HeaderL = () => {
 
@@ -45,16 +46,20 @@ const HeaderL = () => {
                         </Link>
                     </nav>
                 </div>
-                <div
-                    className="relative h-10 w-10 rounded-full border border-white overflow-hidden">
-                    <Image
-                        src="/anon.jpg"
-                        alt="avatar"
-                        fill
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                        className="object-cover"
-                    />
+                <div className="flex gap-3">
+                    <div
+                        className="relative h-10 w-10 rounded-full border border-white overflow-hidden">
+                        <Image
+                            src="/anon.jpg"
+                            alt="avatar"
+                            fill
+                            sizes="(max-width: 768px) 100vw, 33vw"
+                            className="object-cover"
+                        />
+                    </div>
+                    <LogoutButton />
                 </div>
+
             </div>
         </header>
     )

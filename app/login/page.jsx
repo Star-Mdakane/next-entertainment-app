@@ -36,8 +36,8 @@ const LoginPage = () => {
 
             if (res.ok) {
                 setUser(result.user)
-                router.push('/watchlist')
                 router.refresh()
+                router.push('/watchlist')
             } else {
                 setServerError(result.error || 'Invalid credentials')
             }

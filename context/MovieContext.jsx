@@ -19,10 +19,16 @@ export const MovieProvider = ({ children }) => {
     const [marked, setMarked] = useState([])
 
     useEffect(() => {
-        fetch('/api/me')
-            .then(r => r.json())
-            .then(data => setUser(data.user || null))
-            .catch(() => setUser(null))
+        const loadUser = async () => {
+            try {
+                const res = await fetch('/api/me')
+                const data = await res.json()
+                if (data.user) setUser(data.user)
+            } catch {
+                setUser(null) // fail silently
+            }
+        }
+        loadUser()
     }, [])
 
     useEffect(() => {

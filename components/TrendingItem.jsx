@@ -1,5 +1,3 @@
-'use client'
-
 import { useMovie } from "@/context/MovieContext"
 import { FaBookmark } from "react-icons/fa"
 import { FaRegBookmark } from "react-icons/fa6"
@@ -8,8 +6,9 @@ import { TbDeviceTvOldFilled } from "react-icons/tb"
 
 const TrendingItem = ({ media }) => {
     const movie = media.category.toLowerCase() === 'movie'
+    const key = `${media.title}-${media.year}`
     const { toggleBookmark, marked } = useMovie()
-    const isBookmarked = marked.includes(media.id)
+    const isBookmarked = marked.includes(key)
     const imagePath = media.thumbnail?.trending?.large ?? ''
 
 
@@ -23,7 +22,7 @@ const TrendingItem = ({ media }) => {
             }}
         >
             <button
-                onClick={() => toggleBookmark(media.id)}
+                onClick={() => toggleBookmark(key)}
                 className="w-8 h-8 bg-black/50 grid place-content-center ml-auto rounded-full">
                 {isBookmarked ? <FaBookmark className="text-white" /> : <FaRegBookmark className="text-white/70 hover:text-white" />}
             </button>

@@ -7,6 +7,7 @@ import { RiFilmFill } from "react-icons/ri";
 import { FaBookmark } from "react-icons/fa6";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import LogoutButton from "./LogoutButton";
 
 
 const Header = () => {
@@ -41,16 +42,21 @@ const Header = () => {
                         <FaBookmark className={`text-[16px] md:text-[20px] text-blue-ter hover:text-red-pri ${getLinkClass('/watchlist/bookmarked')}`} />
                     </Link>
                 </nav>
-                <div
-                    className="relative w-6 h-6 md:h-8 md:w-8 rounded-full border border-white overflow-hidden">
-                    <Image
-                        src="/anon.jpg"
-                        alt="avatar"
-                        fill
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                        className="object-cover"
-                    />
+                <div className="flex gap-3">
+                    <div
+                        className="relative w-6 h-6 md:h-8 md:w-8 rounded-full border border-white overflow-hidden">
+                        <Image
+                            src="/anon.jpg"
+                            alt="avatar"
+                            fill
+                            sizes="(max-width: 768px) 100vw, 33vw"
+                            className="object-cover"
+                        />
+                    </div>
+                    <LogoutButton />
                 </div>
+
+
             </div>
         </header>
     )
