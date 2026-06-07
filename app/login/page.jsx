@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
@@ -16,7 +15,6 @@ const loginSchema = z.object({
 
 const LoginPage = () => {
     const [serverError, setServerError] = useState('')
-    const router = useRouter()
     const { setUser } = useMovie()
 
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
@@ -29,6 +27,7 @@ const LoginPage = () => {
             const res = await fetch('/api/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
+                credentials: 'include',
                 body: JSON.stringify(data)
             })
 
@@ -36,8 +35,7 @@ const LoginPage = () => {
 
             if (res.ok) {
                 setUser(result.user)
-                router.refresh()
-                router.push('/watchlist')
+                window.location.href = '/watchlist/home'
             } else {
                 setServerError(result.error || 'Invalid credentials')
             }

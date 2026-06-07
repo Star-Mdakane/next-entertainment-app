@@ -2,6 +2,7 @@ import { signToken, verifyPassword } from "@/lib/auth";
 import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/db"
 import * as z from 'zod';
+import User from "@/models/User"
 
 const loginSchema = z.object({
     email: z.email('Invalid email').min(1, "Can't be empty"),
@@ -10,16 +11,16 @@ const loginSchema = z.object({
 
 export async function POST(req) {
     try {
+        await connectDB()
+
         const body = await req.json()
         const { email, password } = loginSchema.parse(body)
         const normalizedEmail = email.toLowerCase().trim()
 
-        const db = await connectDB()
-        const users = db.collection('users')
-
-        const user = await users.findOne({ email: normalizedEmail })
-
         console.log('Login email:', normalizedEmail);
+
+        const user = await User.findOne({ email: normalizedEmail }).lean()
+
 
         if (!user || !(await verifyPassword(password, user.password))) {
             return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 })

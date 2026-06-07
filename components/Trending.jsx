@@ -7,8 +7,6 @@ const Trending = () => {
 
     const { filteredMovies = [] } = useMovie();
 
-    console.log('filteredMovies:', filteredMovies)
-
     const trending = filteredMovies.filter(mv => mv?.isTrending === true)
     if (!trending.length) return null
 

@@ -3,7 +3,6 @@ import { cookies } from 'next/headers'
 import { verifyToken } from '@/lib/auth'
 import { connectDB } from '@/lib/db'
 
-
 export async function POST(req) {
 
     try {

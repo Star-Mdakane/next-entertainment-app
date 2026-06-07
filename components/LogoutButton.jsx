@@ -17,7 +17,7 @@ const LogoutButton = () => {
     return (
         <button
             onClick={handleLogout}
-            className={`px-4 py-2 text-[15px] leading-[125%] tracking-[-0.3] text-white font-medium bg-red-pri rounded-[5px]`}
+            className={`px-3 py-1 text-[15px] leading-[125%] tracking-[-0.3] text-white font-medium bg-red-pri rounded-[5px] hover:bg-red-600 cursor-pointer`}
         >
             <TbLogout2 size={18} />
         </button>

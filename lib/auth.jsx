@@ -14,18 +14,30 @@ export const signToken = async (payload) => {
 
 export async function verifyToken(token) {
     try {
-        console.log('Verifying with secret:', process.env.JWT_SECRET?.slice(0, 5))
-        return jwt.verify(token, process.env.JWT_SECRET)
+        console.log('Verifying with secret:', SECRET?.slice(0, 5))
+        return jwt.verify(token, SECRET)
     } catch (err) {
-        console.log('Verify failed:', err.message)
+        console.log('Verify failed FULL:', err.name, err.message)
         return null
     }
 }
 
 
 export async function getCurrentUser() {
-    const cookieStore = await cookies()
-    const token = cookieStore.get('token')?.value
-    if (!token) return null
-    return verifyToken(token)
+    try {
+        const cookieStore = await cookies()
+        const token = cookieStore.get('token')?.value
+        if (!token) {
+            console.log('No token found');
+            return null
+        }
+
+        const decoded = jwt.verify(token, SECRET)
+        console.log('User decoded:', decoded.email);
+        return decoded
+    } catch (err) {
+        console.log('getCurrentUser error:', err.message)
+        return null
+    }
+
 } 

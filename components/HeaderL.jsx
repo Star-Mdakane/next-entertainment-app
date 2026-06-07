@@ -46,7 +46,7 @@ const HeaderL = () => {
                         </Link>
                     </nav>
                 </div>
-                <div className="flex gap-3">
+                <div className="flex flex-col justify-center items-center gap-3">
                     <div
                         className="relative h-10 w-10 rounded-full border border-white overflow-hidden">
                         <Image

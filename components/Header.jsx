@@ -42,7 +42,7 @@ const Header = () => {
                         <FaBookmark className={`text-[16px] md:text-[20px] text-blue-ter hover:text-red-pri ${getLinkClass('/watchlist/bookmarked')}`} />
                     </Link>
                 </nav>
-                <div className="flex gap-3">
+                <div className="flex items-center justify-center gap-3">
                     <div
                         className="relative w-6 h-6 md:h-8 md:w-8 rounded-full border border-white overflow-hidden">
                         <Image
