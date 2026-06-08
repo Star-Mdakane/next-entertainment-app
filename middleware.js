@@ -36,5 +36,5 @@ export async function middleware(req) {
 }
 
 export const config = {
-    matcher: ['/watchlist/:path*', '/login', '/signup']
+    matcher: ['/watchlist/:path*', '/login', '/signup', '/api/me']
 }

@@ -7,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
 import { MdMovie } from "react-icons/md";
 import { useMovie } from "@/context/MovieContext"
+import { useRouter } from "next/navigation";
 
 const loginSchema = z.object({
     email: z.string().email('Invalid email'),
@@ -14,6 +15,7 @@ const loginSchema = z.object({
 })
 
 const LoginPage = () => {
+    const router = useRouter()
     const [serverError, setServerError] = useState('')
     const { setUser } = useMovie()
 
@@ -22,6 +24,7 @@ const LoginPage = () => {
     })
 
     const onSubmit = async (data) => {
+
         setServerError('')
         try {
             const res = await fetch('/api/login', {
@@ -30,18 +33,20 @@ const LoginPage = () => {
                 credentials: 'include',
                 body: JSON.stringify(data)
             })
-
             const result = await res.json()
 
             if (res.ok) {
                 setUser(result.user)
-                window.location.href = '/watchlist/home'
             } else {
                 setServerError(result.error || 'Invalid credentials')
             }
 
         } catch (err) {
-            setServerError('Something went wrong. Try again.')
+            setServerError('Network error')
+
+        } finally {
+            setServerError('')
+            setTimeout(() => window.location.href = window.location.origin + '/login', 800)
         }
     }
 
