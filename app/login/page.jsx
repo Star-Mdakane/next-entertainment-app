@@ -65,16 +65,14 @@ const LoginPage = () => {
                 <h1
                     className='text-[32px] text-white font-light leading-[125%] tracking-[-0.5px]'>Login</h1>
                 <div className="flex flex-col gap-6">
-                    <label className="flex justify-between">
-                        <input type="email" name="email" {...register('email')} placeholder="Email Address" className="w-full text-[15px] leading-[125%] tracking-normal font-light text-white focus:outline-none focus:border-white hover:border-white caret-red-pri border-b border-blue-ter p-3 cursor-pointer transition-all" autoComplete="off" />
-                        {errors.email && <p className="text-red-pri text-sm mt-1">{errors.email.message}</p>}
-
+                    <label className="relative flex justify-between items-center">
+                        <input type="email" name="email" {...register('email')} placeholder="Email Address" className={`w-full pr-3 text-[15px] leading-[125%] tracking-normal font-light text-white focus:outline-none ${errors.email ? 'focus:border-red-pri' : 'focus:border-white'} hover:border-white caret-red-pri border-b ${errors.email ? 'border-red-pri' : 'border-blue-ter'} p-3 cursor-pointer transition-all`} />
+                        {errors.email && <p className="absolute text-red-pri text-sm mt-1 flex-nowrap shrink-0 right-0 top-1/2 -translate-y-1/2">{errors.email.message}</p>}
                     </label>
                     <div
-                        className="flex justify-between">
-                        <input type="password" name="password" {...register('password')} placeholder="Password" className="w-full text-[15px] leading-[125%] tracking-normal font-light text-white focus:outline-none focus:border-white hover:border-white caret-red-pri border-b border-blue-ter p-3 cursor-pointer transition-all" />
-                        {errors.password && <p className="text-red-pri text-sm mt-1">{errors.password.message}</p>}
-
+                        className="relative flex justify-between items-center">
+                        <input type="password" name="password" {...register('password')} placeholder="Password" className={`w-full text-[15px] leading-[125%] tracking-normal font-light text-white focus:outline-none ${errors.password ? 'focus:border-red-pri' : 'focus:border-white'}  hover:border-white caret-red-pri border-b  ${errors.password ? 'border-red-pri' : 'border-blue-ter'} p-3 cursor-pointer transition-all`} />
+                        {errors.password && <p className="absolute text-red-pri text-sm mt-1 flex-nowrap shrink-0 right-0 top-1/2 -translate-y-1/2">{errors.password.message}</p>}
                     </div>
                 </div>
                 <div className='flex flex-col gap-6'>
