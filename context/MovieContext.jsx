@@ -12,7 +12,7 @@ export const useMovie = () => {
     return ctx
 }
 
-export const MovieProvider = ({ children }) => {
+export const MovieProvider = ({ children, userId }) => {
 
     const [user, setUser] = useState(null)
     const [searchTerm, setSearchTerm] = useState('');
@@ -25,7 +25,7 @@ export const MovieProvider = ({ children }) => {
                 const data = await res.json()
                 if (data.user) setUser(data.user)
             } catch {
-                setUser(null) // fail silently
+                setUser(null)
             }
         }
         loadUser()
