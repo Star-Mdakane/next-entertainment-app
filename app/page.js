@@ -21,7 +21,7 @@ export default function Home() {
 
         {user ? (
           <div className="flex gap-3">
-            <Link href="/watchlist"
+            <Link href="/watchlist/home"
               className="px-4 py-2 text-[15px] leading-[125%] tracking-[-0.3] text-white font-medium bg-red-pri rounded-[5px]">
               Go to Watchlist
             </Link>

@@ -13,7 +13,7 @@ const MediaItem = ({ media }) => {
 
     return (
         <div className="flex flex-col justify-between gap-2">
-            <div className={`h-27.5 md:h-35 lg:h-44 flex justify-between rounded-lg bg-green-500 w-full px-2 py-4`}
+            <div className={`h-27.5 md:h-35 lg:h-44 flex justify-between rounded-lg w-full px-2 py-4`}
                 style={{
                     backgroundImage: `url(${imagePath})`,
                     backgroundSize: 'cover',
