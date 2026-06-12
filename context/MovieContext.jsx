@@ -12,7 +12,7 @@ export const useMovie = () => {
     return ctx
 }
 
-export const MovieProvider = ({ children, userId }) => {
+export const MovieProvider = ({ children }) => {
 
     const [user, setUser] = useState(null)
     const [searchTerm, setSearchTerm] = useState('');
@@ -52,7 +52,6 @@ export const MovieProvider = ({ children, userId }) => {
             if (data.user) setUser(data.user)
 
         } catch (err) {
-            console.log(err);
             setMarked(prev =>
                 prev.includes(key) ? prev.filter(b => b !== key) : [...prev, key]
             )

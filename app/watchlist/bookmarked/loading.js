@@ -1,6 +1,4 @@
-import React from 'react'
-
-const LoadingPage = () => {
+export default function Loading() {
     return (
         <div className='w-full flex items-center justify-center h-screen bg-blue-dark'>
             <div className='w-full h-full flex flex-col items-center gap-4'>
@@ -10,5 +8,3 @@ const LoadingPage = () => {
         </div>
     )
 }
-
-export default LoadingPage

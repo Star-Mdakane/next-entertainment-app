@@ -3,7 +3,7 @@
 import { useMovie } from "@/context/MovieContext"
 import MediaItem from "./MediaItem"
 
-const Media = ({ userId }) => {
+const Media = () => {
 
     const { searchTerm, filteredMovies = [] } = useMovie();
     if (!filteredMovies.length) return null
@@ -18,7 +18,7 @@ const Media = ({ userId }) => {
             <div className="w-full grid grid-cols-[repeat(2,minmax(164px,220px))] md:grid-cols-[repeat(3,minmax(220px,250px))] lg:grid-cols-[repeat(4,minmax(auto,280px))] gap-4 md:gap-6 justify-center">
                 {validMovies.map(m => (
                     <div key={`${m.title}-${m.year}`}>
-                        <MediaItem media={m} userId={userId} />
+                        <MediaItem media={m} />
                     </div>
                 ))}
 
