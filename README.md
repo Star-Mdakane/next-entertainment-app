@@ -1,24 +1,29 @@
-# Frontend Mentor - Entertainment web app
+# Frontend Mentor - Entertainment web app solution
 
-![Design preview for the Entertainment web app coding challenge](./preview.jpg)
+This is a solution to the [Entertainment web app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/entertainment-web-app-J-UhgAW1X). Frontend Mentor challenges help you improve your coding skills by building realistic project.
 
-## Welcome! 👋
+## Table of contents
 
-Thanks for purchasing this premium Frontend Mentor coding challenge.
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+  - [Useful resources](#useful-resources)
+  - [AI Collaboration](#ai-collaboration)
+- [Author](#author)
+- [Acknowledgments](#acknowledgments)
 
-[Frontend Mentor](https://www.frontendmentor.io) challenges help you improve your coding skills by building realistic projects. These premium challenges are perfect portfolio pieces, so please feel free to use what you create in your portfolio to show others.
+**Note: Delete this note and update the table of contents based on what sections you keep.**
 
-**To do this challenge, you need a strong understanding of HTML, CSS, and JavaScript.**
+## Overview
 
-## The challenge
+### The challenge
 
-Your challenge is to build out this entertainment web application and get it looking as close to the design as possible.
-
-You can use any tools you like to help you complete the challenge. So if you've got something you'd like to practice, feel free to give it a go.
-
-We provide the data in a local `data.json` file, so use that to populate the content on the first load. If you want to take it up a notch, feel free to build this as a full-stack application!
-
-Your users should be able to:
+Users should be able to:
 
 - View the optimal layout for the app depending on their device's screen size
 - See hover states for all interactive elements on the page
@@ -28,98 +33,140 @@ Your users should be able to:
 - **Bonus**: Build this project as a full-stack application
 - **Bonus**: If you're building a full-stack app, we provide authentication screen (sign-up/login) designs if you'd like to create an auth flow
 
-### Expected Behaviour
+### Screenshot
 
-- General
-  - The navigation menu should be fixed to the left for larger screens. Use the "Desktop - Home" page in the design as a visual reference.
-- Home
-  - The trending section should scroll sideways to reveal other trending shows
-  - Any search input should search through all shows (i.e. all movies and TV series)
-- Movies
-  - This page should only display shows with the "Movie" category
-  - Any search input should search through all movies
-- TV Series
-  - This page should only display shows with the "TV Series" category
-  - Any search input should search through all TV series
-- Bookmarked Shows
-  - This page should display all bookmarked shows from both categories
-  - Any search input should search through all bookmarked shows
+![](./screenshot.jpg)
 
-### Want some support on the challenge?
+Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
 
-[Join our community](https://www.frontendmentor.io/community) and ask questions in the **#help** channel.
+Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it. 
 
-## Where to find everything
+Then crop/optimize/edit your image however you like, add it to your project, and update the file path in the image above.
 
-Your task is to build out the project to the design file provided. You can download the Figma design file on the platform. **Please be sure not to share it with anyone else.** The design download comes with a `README.md` file as well to help you get set up.
+**Note: Delete this note and the paragraphs above when you add your screenshot. If you prefer not to add a screenshot, feel free to remove this entire section.**
 
-All the required assets for this project are in the `/assets` folder. The assets are already exported for the correct screen size and optimized. Some images are reusable at multiple screen sizes. So if you don't see an image in a specific folder, it will typically be in another folder for that page.
+### Links
 
-The design system in the design file will give you more information about the various colors, fonts, and styles used in this project. Our fonts always come from [Google Fonts](https://fonts.google.com/).
+- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
 
-## Using AI coding assistants
+## My process
 
-We've included two files to help you if you're using AI coding assistants (like Claude, GitHub Copilot, Cursor, etc.) while working on this challenge:
+Upon reading the readme file, the app should be build as a full stack app. So far in my jounrney I am only capable of react router, which means I have to use express for the backend. The other option I had was to learn next js and try to use it. Though using express would give me the challenge needed to learn more and to practice express, I think adding next to my stack is also reasonable. As forementiond, i have decided to take the bonus challenge and add login/register pages.
 
-- `AGENTS.md` - Contains detailed instructions for AI assistants on how to help you with this challenge. It's tailored to this challenge's difficulty level, so the AI will provide guidance appropriate to your learning stage—offering more support for beginner challenges and encouraging more independence on advanced ones.
-- `CLAUDE.md` - A pointer file that directs Claude-based tools to the AGENTS.md instructions.
+## PLEASE NOTE THAT I USED THE JSON DATA INSTEAD OF OMBD, MISSED THAT KEY DETAL TILL I WAS DONE.
 
-**How to use them:** You don't need to do anything! These files are automatically detected by most AI coding tools. The AI will read them and adjust its behavior to be a better learning partner—guiding you toward solutions rather than just giving you the answers.
+1. I started the project by first designing the folder structure: pages, components, context...
+- When I was about to test there was something wrong with turbopack, the problem was that there was another json.lock file somewhere deep n my drive so I had to locate and delete it.
 
-**Note:** These files are designed to help you *learn*, not to do the work for you. The AI is instructed to ask questions, give hints, and explain concepts rather than writing complete solutions.
+2. I decided to start with components and I worked on the header then went to work on a couple of layouts.
 
-## Building your project
+3. After an exhaustig while fighting wiith the header, I decided to work on data fetching to see if it would work.
 
-Feel free to use any workflow that you feel comfortable with. Below is a suggested process, but do not feel like you need to follow these steps:
+4. Worked on the design of the landing page, will complete fetching data for overlay later as it is not priority.
 
-1. Separate the `starter-code` from the rest of this project and rename it to something meaningful for you. Initialize the codebase as a public repository on [GitHub](https://github.com/). Creating a repo will make it easier to share your code with the community if you need help. If you're not sure how to do this, [have a read-through of this Try Git resource](https://try.github.io/). **⚠️ IMPORTANT ⚠️: There are already a couple of `.gitignore` files in this project. Please do not remove them or change the content of the files. If you create a brand new project, please use the `.gitignore` files provided in your new codebase. This is to avoid the accidental upload of the Figma design file to GitHub. With these premium challenges, please be sure not to share the Figma design file in your GitHub repo. Thanks!**
-2. Configure your repository to publish your code to a web address. This will also be useful if you need some help during a challenge as you can share the URL for your project with your repo URL. There are a number of ways to do this, and we provide some recommendations below.
-3. Look through the designs to start planning out how you'll tackle the project. This step is crucial to help you think ahead for CSS classes to create reusable styles.
-4. Before adding any styles, structure your content with HTML. Writing your HTML first can help focus your attention on creating well-structured content.
-5. Write out the base styles for your project, including general content styles, such as `font-family` and `font-size`.
-6. Start adding styles to the top of the page and work down. Only move on to the next section once you're happy you've completed the area you're working on.
+5. Completed the ui of the components of the pages; grids, sizes and positioning on pages 
 
-## Deploying your project
+6. Creaated individual items for the trending grid and media grid, only thing that is left is just populating the items with data.
 
-As mentioned above, there are many ways to host your project for free. Our recommended hosts are:
+7. Populated data into the items via server. Had to remove it and create a context since I think I have to to edit the bookmark tab.
 
-- [GitHub Pages](https://pages.github.com/)
-- [Vercel](https://vercel.com/)
-- [Netlify](https://www.netlify.com/)
+8. I then had to populate images from the data, tried different methods but had to settle for inline styling 
 
-You can host your site using one of these solutions or any of our other trusted providers. [Read more about our recommended and trusted hosts](https://www.frontendmentor.io/guides/hosting-your-solution).
+9. Completed the function of search bar, created on context so i can apply it on any commponent and avoid using many client components.
 
-## Create a custom `README.md`
+10. Bookmark button and function up to speed.
 
-We strongly recommend overwriting this `README.md` with a custom one. We've provided a template inside the [`README-template.md`](./README-template.md) file in this starter code.
+## This is where everything took a dark turn...
 
-The template provides a guide for what to add. A custom `README` will help you explain your project and reflect on your learnings. Please feel free to edit our template as much as you like.
+As I was done with the app, thnings were workng fine and everything was rosy, all I had to do was just add the the login and logout functionality...simple
 
-Once you've added your information to the template, delete this file and rename the `README-template.md` file to `README.md`. That will make it show up as your repository's README file.
+1. For the forms I installed react-hook-forms and zod for the validator to easily validate and retrieve data from the form.
+2. Next I then created the different api routes to communicate with the forms.
+3. I learned that Nextjs api is not the same as you would use for react roter where you have to use express api but here since we using server components, you just create routes.
+4. I then created middleware and a dummy db to store user information, along with the endpoinnts.
+5. When I thought I was nearly done and tried using my phone to test the site, I ran to other problems which meant I had to create a real db since I wanted the user to persist and not stay on my machine only.
+7. The I had to create a new endpoint which was for the bookmarks as the data was now fetched from the db which worked server side not on he client only. 
+8. The database of choce was MongoDb and Mongoose for schemas.
 
-## Submitting your solution
+- When fetching the data I had to move it from root component to public, I do not know whether that was the problem or if it was me not including the domain.
+- It is also helpful to remember that the component also has to be async as well.
+- Fetching server data, I had forgoten that you have to include the domain aswell.
+- I had to change the path from the json file.
+- I initially stored the media per user but when I ran into a bug, AI made me aware that I could just store IDs instead of the whole media which created a whole new problem since I am using the json data instead of the provided api site.
+- I spent many days on the bookmark, me(the api which validated if user) APIs where I was suggested a minor tweak by META which seperated the home page context from the rest of the app context which had me looking for a bug and had to almost restart the app but I had a bit o work saved.
+- I consulted chatgpt where it led me to the bug after 3 days of looking for the simple bug.
 
-Submit your solution on the platform for the rest of the community to see. Follow our ["Complete guide to submitting solutions"](https://www.frontendmentor.io/guides/how-to-submit-solutions) for tips on how to do this.
+### Built with
 
-Remember, if you're looking for feedback on your solution, be sure to ask questions when submitting it. The more specific and detailed you are with your questions, the higher the chance you'll get valuable feedback from the community.
+- Semantic HTML5 markup
+- CSS custom properties
+- Flexbox
+- CSS Grid
+- Mobile-first workflow
+- [React](https://reactjs.org/) - JS library
+- [Next.js](https://nextjs.org/) - React framework
+- [Styled Components](https://styled-components.com/) - For styles
 
-**⚠️ IMPORTANT ⚠️: With these premium challenges, please be sure not to upload the Figma design file to GitHub when you're submitting to the platform and sharing it around. If you've created a brand new project, the easiest way to do that is to copy across the `.gitignore` provided in this starter project.**
+**Note: These are just examples. Delete this note and replace the list above with your own choices**
 
-## Sharing your solution
+### What I learned
 
-There are multiple places you can share your solution:
+Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
 
-1. Share your solution page in the **#finished-projects** channel of the [community](https://www.frontendmentor.io/community).
-2. Share on [X (formerly Twitter)](https://x.com/frontendmentor) and mention **@frontendmentor**, including the repo and live URLs in your post. We'd love to take a look at what you've built and help share it around.
-3. Share your solution on [LinkedIn](https://www.linkedin.com/company/frontend-mentor/).
-4. Blog about your experience building your project. Writing about your workflow, technical choices, and talking through your code is a brilliant way to reinforce what you've learned. Great platforms to write on are [dev.to](https://dev.to/), [Hashnode](https://hashnode.com/), and [CodeNewbie](https://community.codenewbie.org/).
+To see how you can add code snippets, see below:
 
-We provide templates to help you share your solution once you've submitted it on the platform. Please do edit them and include specific questions when you're looking for feedback.
+```html
+<h1>Some HTML code I'm proud of</h1>
+```
+```css
+.proud-of-this-css {
+  color: papayawhip;
+}
+```
+```js
+const proudOfThisFunc = () => {
+  console.log('🎉')
+}
+```
 
-The more specific you are with your questions the more likely it is that another member of the community will give you feedback.
+If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
 
-## Got feedback for us?
+**Note: Delete this note and the content within this section and replace with your own learnings.**
 
-We love receiving feedback! We're always looking to improve our challenges and our platform. So if you have anything you'd like to mention, please email hi[at]frontendmentor[dot]io.
+### Continued development
 
-**Have fun building!** 🚀
+Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
+
+**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+
+### Useful resources
+
+- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
+- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+
+**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
+
+### AI Collaboration
+
+Describe how you used AI tools (if any) during this project. This helps demonstrate your ability to work effectively with AI assistants.
+
+- What tools did you use (e.g., ChatGPT, Claude, GitHub Copilot)?
+- How did you use them (e.g., debugging, generating boilerplate, brainstorming solutions)?
+- What worked well? What didn't?
+
+**Note: Delete this note and the content above if you didn't use AI, or replace with your own experience.**
+
+## Author
+
+- Website - [Add your name here](https://www.your-site.com)
+- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
+- Twitter - [@yourusername](https://www.twitter.com/yourusername)
+
+**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
+
+## Acknowledgments
+
+This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
+
+**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
