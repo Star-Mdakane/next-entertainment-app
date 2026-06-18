@@ -21,7 +21,7 @@ const Header = () => {
 
     return (
         <header
-            className="w-screen -translate-x-8 md:translate-x-0 md:static md:max-w-full h-14 md:h-18 md:rounded-[10px] px-8 lg:hidden flex justify-center items-center bg-blue-sec">
+            className="w-screen -translate-x-2 md:translate-x-0 md:static md:max-w-full h-14 md:h-18 md:rounded-[10px] px-2 lg:hidden flex justify-center items-center bg-blue-sec">
             <div className="w-full flex justify-between items-center">
                 <div>
                     <Link href="/">
