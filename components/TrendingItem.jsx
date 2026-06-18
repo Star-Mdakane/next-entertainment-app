@@ -24,7 +24,7 @@ const TrendingItem = ({ media }) => {
         >
             <button
                 onClick={() => toggleBookmark(key, media.title)}
-                className="w-8 h-8 bg-black/50 grid place-content-center ml-auto rounded-full">
+                className="w-8 h-8 z-70 bg-black/50 grid place-content-center ml-auto rounded-full">
                 {isBookmarked ? <FaBookmark className="text-white" /> : <FaRegBookmark className="text-white/70 hover:text-white" />}
             </button>
             <PlayHover />

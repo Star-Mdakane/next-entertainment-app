@@ -23,7 +23,7 @@ export default function Home() {
 
   return (
 
-    <main className="relative w-screen h-screen flex flex-col max-w-360 mx-auto justify-center px-8 overflow-hidden">
+    <main className="relative w-screen h-screen flex flex-col max-w-360 mx-auto justify-center px-2 md:px-8 overflow-hidden">
       <div className="absolute inset-0 grid grid-cols-4 md:grid-cols-6 grid-rows-3 gap-2 opacity-40 blur-sm scale-110 h-full">
         {bgMovies.map((movie, i) => (
           <div key={movie.id ?? i} className="relative w-full aspect-video">
