@@ -2,6 +2,8 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 import media from '../public/data.json'
+import { FaBookmark } from "react-icons/fa6";
+import { toast } from "sonner";
 
 
 export const MovieContext = createContext()
@@ -35,7 +37,10 @@ export const MovieProvider = ({ children }) => {
         setMarked(user?.bookmarkedIds || [])
     }, [user])
 
-    const toggleBookmark = async (key) => {
+    const toggleBookmark = async (key, title) => {
+
+        const isBookmarked = marked.includes(key)
+
         setMarked(prev =>
             prev.includes(key) ? prev.filter(b => b !== key) : [...prev, key]
         )
@@ -51,10 +56,18 @@ export const MovieProvider = ({ children }) => {
             const data = await res.json()
             if (data.user) setUser(data.user)
 
+            toast.success(
+                isBookmarked
+                    ? `'${title}' removed from bookmarks`
+                    : `'${title}' bookmarked`,
+                { icon: <FaBookmark />, duration: 1000 }
+            )
+
         } catch (err) {
             setMarked(prev =>
                 prev.includes(key) ? prev.filter(b => b !== key) : [...prev, key]
             )
+            toast.error('Failed to update bookmark')
         }
 
 
@@ -68,6 +81,7 @@ export const MovieProvider = ({ children }) => {
 
     const value = {
         user,
+        setUser,
         filteredMovies,
         media,
         searchTerm,

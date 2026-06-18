@@ -3,6 +3,7 @@ import { hashPassword, signToken } from "@/lib/auth";
 import { nanoid } from "nanoid";
 import { NextResponse } from "next/server";
 import * as z from 'zod';
+import User from "@/models/User"
 
 const signupSchema = z.object({
     email: z.email('Invalid email').min(1, "Can't be empty"),
@@ -12,15 +13,13 @@ const signupSchema = z.object({
 export async function POST(req) {
     console.log('1. Signup started')
     try {
+        await connectDB()
         const body = await req.json()
         const { email, password } = signupSchema.parse(body)
         const normalizedEmail = email.toLowerCase().trim()
         console.log('2. Parsed body', email)
 
-        const db = await connectDB()
-        const users = db.collection('users')
-
-        const existingUser = await users.findOne({ email: normalizedEmail })
+        const existingUser = await User.findOne({ email: normalizedEmail })
         console.log('3. Checked existing user')
         if (existingUser) {
             return NextResponse.json({ error: 'Email already exists' }, { status: 409 })
@@ -29,20 +28,23 @@ export async function POST(req) {
         const hashed = await hashPassword(password)
         console.log('4. Password hashed')
 
-        const newUser = {
-            id: nanoid(),
-            email: normalizedEmail,
-            password: hashed,
-            bookmarkedIds: []
-        }
-        await users.insertOne(newUser)
-        console.log('5. User inserted to Mongo')
+        const newUser = await User.create(
+            {
+                email: normalizedEmail,
+                password: hashed,
+                bookmarkedIds: []
+            }
+        )
 
-        const { password: _, ...safeUser } = newUser
+        const { password: _, ...safeUser } = newUser.toObject()
 
-        const token = await signToken({ id: newUser.id, email: normalizedEmail })
+        const token = await signToken({ id: newUser._id.toString(), email: normalizedEmail })
 
-        const res = NextResponse.json({ user: safeUser })
+        const res = NextResponse.json({
+            ok: true,
+            message: "Entering a world of wonders!",
+            user: { ...safeUser, id: newUser._id.toString() }
+        })
         res.cookies.set('token', token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',

@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
 import { MdMovie } from 'react-icons/md'
+import { toast } from 'sonner'
 
 const signupSchema = z.object({
     email: z.email().trim().min(1, "Can't be empty"),
@@ -32,17 +33,32 @@ const SignUpPage = () => {
 
         const { password2, ...submitData } = data
 
-        const res = await fetch('/api/signup', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ ...submitData })
-        })
+        try {
+            const res = await fetch('/api/signup', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ ...submitData })
+            })
 
-        const result = await res.json()
-        if (res.ok) {
-            router.push('/login')
-        } else {
-            setServerError(result.error)
+            const result = await res.json()
+            if (res.ok && result.ok) {
+                toast.success(result.message)
+                setTimeout(() => {
+                    router.push("/watchlist/home")
+                    router.refresh()
+                }, 1000)
+            } else if (result.errors) {
+                const firstError = Object.values(result.errors)[0]?.[0]
+                toast.error(firstError || 'Invalid input')
+                setServerError(firstError)
+            } else {
+                toast.error(result.error || 'Signup failed')
+                setServerError(result.error)
+            }
+        } catch (err) {
+            console.error("Signup error:", err)
+            toast.error(err.message)
+            setServerError(err.message)
         }
     }
 

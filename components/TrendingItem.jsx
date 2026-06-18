@@ -3,6 +3,7 @@ import { FaBookmark } from "react-icons/fa"
 import { FaRegBookmark } from "react-icons/fa6"
 import { RiFilmFill } from "react-icons/ri"
 import { TbDeviceTvOldFilled } from "react-icons/tb"
+import PlayHover from "./PlayHover"
 
 const TrendingItem = ({ media }) => {
     const movie = media.category.toLowerCase() === 'movie'
@@ -14,7 +15,7 @@ const TrendingItem = ({ media }) => {
 
     return (
         <div
-            className={`h-full flex flex-col justify-between rounded-lg shrink-0 w-60 md:w-117 overflow-hidden px-6 py-4`}
+            className={`relative h-full flex flex-col justify-between rounded-lg shrink-0 w-60 md:w-117 overflow-hidden px-6 py-4 group`}
             style={{
                 backgroundImage: `url(${imagePath})`,
                 backgroundSize: 'cover',
@@ -22,10 +23,11 @@ const TrendingItem = ({ media }) => {
             }}
         >
             <button
-                onClick={() => toggleBookmark(key)}
+                onClick={() => toggleBookmark(key, media.title)}
                 className="w-8 h-8 bg-black/50 grid place-content-center ml-auto rounded-full">
                 {isBookmarked ? <FaBookmark className="text-white" /> : <FaRegBookmark className="text-white/70 hover:text-white" />}
             </button>
+            <PlayHover />
             <div className="h-auto flex flex-col justify-between gap-2">
                 <div className="flex items-center gap-2">
                     <p className="text-white/75 text-[12px] md:text-[15px] leading-[125%] tracking-[-0.3] font-light">{media.year}</p>

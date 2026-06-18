@@ -1,7 +1,8 @@
 import { Outfit } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
 import { MovieProvider } from "@/context/MovieContext";
+import ToasterClient from "@/components/ToasterClient";
+
 
 const outfit = Outfit({
   variable: "--font-geist-sans",
@@ -22,6 +23,7 @@ export default function RootLayout({ children }) {
       <body className="min-h-full max-w-360 min-w-93.75 mx-auto flex flex-col">
         <MovieProvider>
           {children}
+          <ToasterClient />
         </MovieProvider>
       </body>
     </html>

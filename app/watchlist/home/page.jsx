@@ -1,3 +1,5 @@
+'use client'
+
 import Media from "@/components/Media";
 import SearchBar from "@/components/SearchBar";
 import Trending from "@/components/Trending";

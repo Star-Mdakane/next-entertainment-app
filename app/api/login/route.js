@@ -10,6 +10,9 @@ const loginSchema = z.object({
 })
 
 export async function POST(req) {
+
+    const isProd = process.env.NODE_ENV === 'production';
+
     try {
         await connectDB()
 
@@ -17,10 +20,7 @@ export async function POST(req) {
         const { email, password } = loginSchema.parse(body)
         const normalizedEmail = email.toLowerCase().trim()
 
-        console.log('Login email:', normalizedEmail);
-
         const user = await User.findOne({ email: normalizedEmail }).lean()
-
 
         if (!user || !(await verifyPassword(password, user.password))) {
             return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 })
@@ -29,11 +29,15 @@ export async function POST(req) {
         const { password: _, _id, ...safeUser } = user
 
         const token = await signToken({ id: user._id.toString(), email: user.email })
-        const res = NextResponse.json({ user: { ...safeUser, id: _id.toString() } })
+        const res = NextResponse.json({
+            ok: true,
+            message: "Welcome back!",
+            user: { ...safeUser, id: _id.toString() }
+        })
         res.cookies.set('token', token,
             {
                 httpOnly: true,
-                secure: false,
+                secure: isProd,
                 sameSite: 'lax',
                 path: '/',
                 maxAge: 60 * 60 * 24 * 7
@@ -41,7 +45,6 @@ export async function POST(req) {
 
         return res
     } catch (err) {
-        console.error('LOGIN CRASH:', err)
         if (err.name === 'ZodError') {
             const errors = err.flatten().fieldErrors
             return NextResponse.json({ errors }, { status: 400 })

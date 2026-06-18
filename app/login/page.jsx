@@ -7,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
 import { MdMovie } from "react-icons/md";
 import { useMovie } from "@/context/MovieContext"
+import { toast } from 'sonner'
 import { useRouter } from "next/navigation";
 
 const loginSchema = z.object({
@@ -35,18 +36,25 @@ const LoginPage = () => {
             })
             const result = await res.json()
 
-            if (res.ok) {
+            if (res.ok && result.ok) {
                 setUser(result.user)
+                toast.success(result.message)
+
+                setTimeout(() => {
+                    router.push('/login')
+                    router.refresh()
+                }, 1000)
+
             } else {
+                toast.error(result.error || 'Invalid credentials')
                 setServerError(result.error || 'Invalid credentials')
             }
 
         } catch (err) {
-            setServerError('Network error')
+            console.error("Real error", err)
+            toast.error(err.message)
+            setServerError.error(err.message)
 
-        } finally {
-            setServerError('')
-            setTimeout(() => window.location.href = window.location.origin + '/login', 800)
         }
     }
 
